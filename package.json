@@ -1,0 +1,26 @@
+{
+  "name": "Main",
+  "version": "0.0.1",
+  "description": "Api graphql and rest",
+  "main": "index.js",
+  "author": "Wellerson",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "yarn start:rest & yarn start:server",
+    "start:rest": "yarn workspace @rest/server run start",
+    "start:server": "yarn workspace @graphql/server run start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/react-native",
+      "**/react-native-*"
+    ]
+  }
+}
