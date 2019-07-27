@@ -53,17 +53,15 @@ export default new GraphQLObjectType({
       }
     },
     findPermalink: {
-      type: new GraphQLList(ArticleType),
+      type: ArticleType,
       args: {
         slug: {
           type: new GraphQLNonNull(GraphQLString)
         }
       },
       resolve: (parentValue, args, ctx) => {
-        const slugTitle = args.slug;
-        const slug = Slugify(slugTitle)
-        const $regex = new RegExp(slug.toLowerCase().trim(), 'i')
-        return articleModel.find({slug: {$regex}}) ;
+        const slug = args.slug;
+        return articleModel.findOne({slug}) ;
       }
     }
   })

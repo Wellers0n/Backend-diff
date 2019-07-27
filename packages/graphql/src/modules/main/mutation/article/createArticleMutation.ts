@@ -32,11 +32,9 @@ export default mutationWithClientMutationId({
     // permalink and slug
     const slug = Slugify(title)
     const random = GetRandom(1, 100000000)
-    const permalink = `http://localhost:5000/articles/${slug}-${random}`
+    const permalink = `http://localhost:8080/articles/${slug}-${random}`
     // date now
     const date = Date.now();
-    // toLowerCase title
-    title.toLowerCase().trim()
 
     const article = await Article.create({
       idUser,
@@ -46,8 +44,7 @@ export default mutationWithClientMutationId({
       author,
       date,
       date_update: null,
-      permalink,
-      slug
+      slug:permalink
     });
     
     const ArticleUpdate = await Article.find({});

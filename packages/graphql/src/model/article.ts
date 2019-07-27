@@ -29,10 +29,6 @@ const article = new Schema({
   date_update: {
     type: Date
   },
-  permalink: {
-    type: String,
-    required: "permalink is requerid"
-  },
   slug: {
     type: String,
     required: "slug is requerid"
