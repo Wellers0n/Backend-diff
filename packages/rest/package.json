@@ -1,0 +1,27 @@
+{
+  "name": "@rest/server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/Wellers0n/Backend-diff.git",
+  "author": "Wellerson <wellerson.coffee@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node ./src/index.js"
+  },
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "kcors": "^2.2.2",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.6.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "nodemon": "^1.19.1"
+  }
+}
