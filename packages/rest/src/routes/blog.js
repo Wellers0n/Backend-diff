@@ -7,7 +7,9 @@ import {
   DeleteOneArticle,
   UpdateOneArticle,
   CreateOneArticles,
-  CreateOneComment
+  CreateOneComment,
+  UpdateOneComment,
+  DeleteOneComment
 } from "../controllers/blog";
 import { authMiddleware } from "./../auth";
 
@@ -23,6 +25,10 @@ router.delete("/api/article/:id", authMiddleware, DeleteOneArticle);
 router.put("/api/article/:id", authMiddleware, UpdateOneArticle);
 // comments
 router.post("/api/comment", authMiddleware, CreateOneComment);
+router.put("/api/comment", authMiddleware, UpdateOneComment);
+router.delete("/api/comment", authMiddleware, DeleteOneComment);
+
+
 
 
 

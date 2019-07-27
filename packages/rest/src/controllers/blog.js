@@ -89,7 +89,6 @@ export const UpdateOneArticle = async ctx => {
 /* COMMENTS */
 
 // create a comment
-
 export const CreateOneComment = async ctx => {
   const { username, description, idArticle } = ctx.request.body;
   const idUser = ctx.state.user;
@@ -99,5 +98,22 @@ export const CreateOneComment = async ctx => {
     description,
     idUser
   });
+  ctx.status = 200;
+};
+
+// create a update
+export const UpdateOneComment = async ctx => {
+  const { id, description } = ctx.request.body;
+  await Comment.updateOne(
+    { _id: id },
+    { description }
+  );
+  ctx.status = 200;
+};
+
+// create a delete
+export const DeleteOneComment = async ctx => {
+  const { id } = ctx.request.body;
+  await Comment.deleteOne({ _id: id });
   ctx.status = 200;
 };
