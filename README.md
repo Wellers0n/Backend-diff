@@ -36,3 +36,6 @@
 [GraphQL](https://graphql.org/)<br/>
 [Yarn](https://yarnpkg.com/en/)<br/>
 [WorkSpaces](https://yarnpkg.com/lang/en/docs/workspaces/)<br/>
+
+## Profile
+@nandosangenetto
