@@ -2,8 +2,7 @@ import Article from "./../../../../model/article";
 import { GraphQLString, GraphQLNonNull, GraphQLList } from "graphql";
 import { mutationWithClientMutationId } from "graphql-relay";
 import ArticleType from "../../ArticleType";
-import Slugify from './../../../helper/Slugify'
-import GetRandom from './../../../helper/GetRandom'
+import GetSlug from './../../../helper/GetSlug'
 
 export default mutationWithClientMutationId({
   name: "createArticleMutation",
@@ -30,10 +29,8 @@ export default mutationWithClientMutationId({
     options
   ) => {
     // permalink and slug
-    const slug = Slugify(title)
-    const random = GetRandom(1, 100000000)
-    const permalink = `http://localhost:8080/articles/${slug}-${random}`
-    // date now
+    const slug = GetSlug("articles", title)
+    console.log(slug)
     const date = Date.now();
 
     const article = await Article.create({
@@ -44,7 +41,7 @@ export default mutationWithClientMutationId({
       author,
       date,
       date_update: null,
-      slug:permalink
+      slug
     });
     
     const ArticleUpdate = await Article.find({});
