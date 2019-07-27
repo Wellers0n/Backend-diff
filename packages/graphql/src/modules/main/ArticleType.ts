@@ -33,7 +33,13 @@ export default new GraphQLObjectType({
         },
         idUser: {
             type: GraphQLString
-        }
+        },
+        permalink: {
+            type: GraphQLString
+        },
+        slug: {
+            type: GraphQLString
+        },
     })
 })
 

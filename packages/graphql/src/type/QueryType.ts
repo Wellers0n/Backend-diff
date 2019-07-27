@@ -2,12 +2,14 @@ import {
   GraphQLObjectType,
   GraphQLList,
   GraphQLNonNull,
-  GraphQLID
+  GraphQLID,
+  GraphQLString
 } from "graphql";
 import ArticleType from "../modules/main/ArticleType";
 import CommentType from './../modules/main/CommentType'
 import articleModel from "../model/article";
-import commentModel from "../model/comment"
+import commentModel from "../model/comment";
+import Slugify from './../modules/helper/Slugify'
 
 export default new GraphQLObjectType({
   name: "QueryType",
@@ -48,6 +50,20 @@ export default new GraphQLObjectType({
       resolve: (parentValue, args, ctx) => {
         const idArticle = args.idArticle;
         return commentModel.find({idArticle}) ;
+      }
+    },
+    findPermalink: {
+      type: new GraphQLList(ArticleType),
+      args: {
+        slug: {
+          type: new GraphQLNonNull(GraphQLString)
+        }
+      },
+      resolve: (parentValue, args, ctx) => {
+        const slugTitle = args.slug;
+        const slug = Slugify(slugTitle)
+        const $regex = new RegExp(slug.toLowerCase().trim(), 'i')
+        return articleModel.find({slug: {$regex}}) ;
       }
     }
   })

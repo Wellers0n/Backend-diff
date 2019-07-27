@@ -2,7 +2,8 @@ import Article from "./../../../../model/article";
 import { GraphQLString, GraphQLNonNull, GraphQLList } from "graphql";
 import { mutationWithClientMutationId } from "graphql-relay";
 import ArticleType from "../../ArticleType";
-
+import Slugify from './../../../helper/Slugify'
+import GetRandom from './../../../helper/GetRandom'
 
 export default mutationWithClientMutationId({
   name: "createArticleMutation",
@@ -22,21 +23,20 @@ export default mutationWithClientMutationId({
     author: {
       type: new GraphQLNonNull(new GraphQLList(GraphQLString))
     },
-    date: {
-      type: new GraphQLNonNull(GraphQLString)
-    },
-    date_update: {
-      type: GraphQLString
-    }
   },
   mutateAndGetPayload: async (
-    { idUser, title, subtitle, description, author, date, date_update },
+    { idUser, title, subtitle, description, author },
     context,
     options
   ) => {
-    // const idUser = context.user.id;
-    // const article = await Article.findOne({ name });
-    // if (!idUser) return { error: "User null" };
+    // permalink and slug
+    const slug = Slugify(title)
+    const random = GetRandom(1, 100000000)
+    const permalink = `http://localhost:5000/articles/${slug}-${random}`
+    // date now
+    const date = Date.now();
+    // toLowerCase title
+    title.toLowerCase().trim()
 
     const article = await Article.create({
       idUser,
@@ -45,9 +45,11 @@ export default mutationWithClientMutationId({
       description,
       author,
       date,
-      date_update
+      date_update: null,
+      permalink,
+      slug
     });
-
+    
     const ArticleUpdate = await Article.find({});
     if (article) {
       return {
