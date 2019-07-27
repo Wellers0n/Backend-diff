@@ -4,6 +4,8 @@ import createArticleMutation from './article/createArticleMutation'
 import createCommentMutation from './comment/createCommentMutation'
 import deleteArticleMutation from './article/deleteArticleMutation'
 import updateArticleMutation from './article/updateArticleMutation'
+import deleteCommentMutation from './comment/deleteCommentMutation'
+import updateCommentMutation from './comment/updateCommentMutation'
 
 export default {
     loginMutation,
@@ -11,5 +13,7 @@ export default {
     createArticleMutation,
     createCommentMutation,
     deleteArticleMutation,
-    updateArticleMutation
+    updateArticleMutation,
+    deleteCommentMutation,
+    updateCommentMutation
 }

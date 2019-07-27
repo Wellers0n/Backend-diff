@@ -3,7 +3,8 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLID,
-  GraphQLString
+  GraphQLString,
+  GraphQLInt
 } from "graphql";
 import ArticleType from "../modules/main/ArticleType";
 import CommentType from './../modules/main/CommentType'
@@ -28,9 +29,19 @@ export default new GraphQLObjectType({
     },
     articles: {
       type: new GraphQLList(ArticleType),
+      args: {
+        skip: {
+          type: GraphQLInt
+        },
+        limit: {
+          type: GraphQLInt
+        }
+      },
       resolve: (parentValue, args, ctx) => {
         // const idUser = ctx.user.id;
-        return articleModel.find({}) ;
+        const limit = args.limit
+        const skip = Math.max(0, args.skip)
+        return articleModel.find({}).limit(limit).skip(skip) ;
       } 
     },
     // myArticles: {
@@ -45,11 +56,19 @@ export default new GraphQLObjectType({
       args: {
         idArticle: {
           type: new GraphQLNonNull(GraphQLID)
+        },
+        skip: {
+          type: GraphQLInt
+        },
+        limit: {
+          type: GraphQLInt
         }
       },
       resolve: (parentValue, args, ctx) => {
+        const limit = args.limit
+        const skip = Math.max(0, args.skip)
         const idArticle = args.idArticle;
-        return commentModel.find({idArticle}) ;
+        return commentModel.find({idArticle}).limit(limit).skip(skip) ;
       }
     },
     findPermalink: {

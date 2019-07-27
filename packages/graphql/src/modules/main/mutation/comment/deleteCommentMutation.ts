@@ -4,34 +4,18 @@ import { mutationWithClientMutationId } from "graphql-relay";
 import CommentType from "../../CommentType";
 
 export default mutationWithClientMutationId({
-  name: "createCommentMutation",
+  name: "deleteMyCommentMutation",
   inputFields: {
+    _id: {
+      type: new GraphQLNonNull(GraphQLString)
+    },
     idArticle: {
-      type: new GraphQLNonNull(GraphQLString)
-    },
-    username: {
-      type: new GraphQLNonNull(GraphQLString)
-    },
-    description: {
-      type: new GraphQLNonNull(GraphQLString)
-    },
-    idUser: {
       type: new GraphQLNonNull(GraphQLString)
     }
   },
-  mutateAndGetPayload: async (
-    { idArticle, username, description, idUser },
-    context,
-    options
-  ) => {
+  mutateAndGetPayload: async ({ _id, idArticle }, context, options) => {
     // const idUser = context.user.id; <- o certo seria usar o id do user logado, mas estou colocando direto
-    const comment = await Comment.create({
-      idArticle,
-      username,
-      description,
-      idUser
-    });
-
+    const comment = await Comment.deleteOne({ _id });
     const CommentUpdate = await Comment.find({ idArticle });
     if (comment) {
       return {
@@ -39,8 +23,9 @@ export default mutationWithClientMutationId({
         comment: CommentUpdate
       };
     }
+
     return {
-      error: "Error in create an comment"
+      error: "Error in delete my an comment"
     };
   },
   outputFields: {
