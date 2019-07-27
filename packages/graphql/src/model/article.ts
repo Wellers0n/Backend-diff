@@ -28,6 +28,10 @@ const article = new Schema({
   },
   date_update: {
     type: Date
+  },
+  slug: {
+    type: String,
+    required: "slug is requerid"
   }
 });
 

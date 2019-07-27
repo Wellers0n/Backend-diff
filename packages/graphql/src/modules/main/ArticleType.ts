@@ -33,6 +33,9 @@ export default new GraphQLObjectType({
         },
         idUser: {
             type: GraphQLString
+        },
+        slug: {
+            type: GraphQLString
         }
     })
 })
