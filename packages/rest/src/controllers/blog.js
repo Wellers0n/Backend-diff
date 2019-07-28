@@ -137,8 +137,6 @@ export const DeleteOneComment = async ctx => {
 /* PRMALINK */
 export const Permalink = async ctx => {
   const { slug } = ctx.query;
-  console.log(slug)
-  const $regex = new RegExp(slug, "gi");
-  const article = await Article.findOne({ slug: { $regex } });
+  const article = await Article.findOne({ slug });
   return ctx.body = article
 };
