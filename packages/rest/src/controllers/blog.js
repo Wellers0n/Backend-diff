@@ -35,7 +35,10 @@ export const createUser = async ctx => {
 
 // find articles
 export const FindArticles = async ctx => {
-  const article = await Article.find({});
+  const { limit, skip } = ctx.query;
+  const skipInt = Math.max(0, parseInt(skip));
+  const limitInt = parseInt(limit);
+  const article = await Article.find({}).limit(limitInt).skip(skipInt);
   ctx.body = article;
 };
 
@@ -93,8 +96,8 @@ export const GetComments = async ctx => {
   const { idArticle } = ctx.params;
   const { limit, skip } = ctx.query;
   const skipInt = Math.max(0, parseInt(skip));
-  const limitInt = parseInt(limit)
-  console.log(typeof limit, typeof skip)
+  const limitInt = parseInt(limit);
+
   const comment = await Comment.find({ idArticle })
     .limit(limitInt)
     .skip(skipInt);

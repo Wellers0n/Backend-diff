@@ -44,13 +44,6 @@ export default new GraphQLObjectType({
         return articleModel.find({}).limit(limit).skip(skip) ;
       } 
     },
-    // myArticles: {
-    //   type: new GraphQLList(ArticleType),
-    //   resolve: (parentValue, args, ctx) => {
-    //     // const idUser = ctx.user.id;
-    //     return ctx.user ? articleModel.find({idUser}) : null;
-    //   }
-    // },
     comments: {
       type: new GraphQLList(CommentType),
       args: {
@@ -80,7 +73,8 @@ export default new GraphQLObjectType({
       },
       resolve: (parentValue, args, ctx) => {
         const slug = args.slug;
-        return articleModel.findOne({slug}) ;
+        const $regex = new RegExp(slug, "gi")
+        return articleModel.findOne({slug: {$regex}}) ;
       }
     }
   })
