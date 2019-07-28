@@ -37,7 +37,7 @@ export const GetComments = async ctx => {
   
   // create a delete
   export const DeleteOneComment = async ctx => {
-    const { id } = ctx.request.body;
+    const { id } = ctx.params;
     await Comment.deleteOne({ _id: id });
     return (ctx.status = 200);
   };
