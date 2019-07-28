@@ -1,15 +1,6 @@
 <p align="center">
     <img src="./backend.png" height="130"/>
 </p>
-<!-- <p align="center">
-    <img src="https://img.shields.io/github/package-json/v/wellers0n/4fun-fullstack.svg"/>
-    <img src="https://img.shields.io/github/last-commit/wellers0n/4fun-fullstack.svg"/>
-    <img src="https://img.shields.io/github/license/wellers0n/4fun-fullstack.svg"/>
-    <a href="https://twitter.com/wellers0n_" target="_blank">
-        <img src="https://img.shields.io/twitter/url/https/wellers0n_.svg?style=social"/>
-    </a>
-</p> -->
-
 <p>
    <h1 align="center">Backend-diff</h1>
 <p/>
@@ -27,6 +18,25 @@
 - Enter in the folder `cd Backend-diff/`
 - To install project dependency: `yarn install`
 - After the installation of the dependencies `yarn start` in the default directory
+
+## Routes
+
+#### Login and create user
+- `POST` => `/api/login` return -> `TOKEN`
+- `POST` => `/api/createUser` return -> `status 200`
+
+#### Articles
+- `GET` => `/api/articles` return -> `json articles`
+- `GET` => `/api/article/:id` return -> `json one article`
+- `POST` => `/api/article` return -> `status 200 = create one article`
+- `DELETE` => `/api/article/:id` return -> `status 200 = delete one article`
+- `PUT` => `/api/article/:id` return -> `status 200 = update one article`
+
+#### Comments
+- `GET` => `/api/comment/:idArticle` return -> `json comments of an article`
+- `POST` => `/api/comment` return -> `status 200 = create one comments`
+- `DELETE` => `/api/comment/:id` return -> `status 200 = delete one article`
+- `PUT` => `/api/comment` return -> `status 200 = update one article`
 
 ## Stack used
 
