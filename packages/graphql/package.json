@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "GraphQL test",
   "main": "index.js",
-  "author": "Wellerson",
+  "repository": "https://github.com/Wellers0n/Backend-diff.git",
+  "author": "Wellerson <wellerson.coffee@gmail.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
