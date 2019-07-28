@@ -38,7 +38,9 @@ export const FindArticles = async ctx => {
   const { limit, skip } = ctx.query;
   const skipInt = Math.max(0, parseInt(skip));
   const limitInt = parseInt(limit);
-  const article = await Article.find({}).limit(limitInt).skip(skipInt);
+  const article = await Article.find({})
+    .limit(limitInt)
+    .skip(skipInt);
   ctx.body = article;
 };
 
@@ -130,4 +132,13 @@ export const DeleteOneComment = async ctx => {
   const { id } = ctx.request.body;
   await Comment.deleteOne({ _id: id });
   return (ctx.status = 200);
+};
+
+/* PRMALINK */
+export const Permalink = async ctx => {
+  const { slug } = ctx.query;
+  console.log(slug)
+  const $regex = new RegExp(slug, "gi");
+  const article = await Article.findOne({ slug: { $regex } });
+  return ctx.body = article
 };

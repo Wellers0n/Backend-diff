@@ -10,7 +10,8 @@ import {
   CreateOneComment,
   UpdateOneComment,
   DeleteOneComment,
-  GetComments
+  GetComments,
+  Permalink
 } from "../controllers/blog";
 import { authMiddleware } from "./../auth";
 
@@ -29,6 +30,10 @@ router.get("/api/comment/:idArticle", authMiddleware, GetComments);
 router.post("/api/comment", authMiddleware, CreateOneComment);
 router.put("/api/comment", authMiddleware, UpdateOneComment);
 router.delete("/api/comment", authMiddleware, DeleteOneComment);
+
+//permalink
+router.get("/api/permalink", authMiddleware, Permalink);
+
 
 
 
