@@ -1,21 +1,27 @@
 import Router from "koa-router";
 import {
-  FindArticles,
   loginUser,
   createUser,
-  FindOneArticles,
-  DeleteOneArticle,
-  UpdateOneArticle,
-  CreateOneArticles,
+} from "../controllers/users";
+import {
   CreateOneComment,
-  UpdateOneComment,
-  DeleteOneComment,
   GetComments,
+  DeleteOneComment,
+  UpdateOneComment
+} from "../controllers/comments";
+import {
+  CreateOneArticles,
+  DeleteOneArticle,
+  FindArticles,
+  FindOneArticles,
+  UpdateOneArticle,
   Permalink
-} from "../controllers/blog";
+} from "../controllers/articles";
+
 import { authMiddleware } from "./../auth";
 
 const router = new Router();
+
 // create user and login
 router.post("/api/login", loginUser);
 router.post("/api/createUser", createUser);
@@ -33,12 +39,5 @@ router.delete("/api/comment", authMiddleware, DeleteOneComment);
 
 //permalink
 router.get("/api/permalink", authMiddleware, Permalink);
-
-
-
-
-
-
-
 
 export default router.routes();
