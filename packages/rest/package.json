@@ -16,7 +16,7 @@
     "koa-logger": "^3.2.1",
     "koa-rest-cache": "^1.1.0",
     "koa-router": "^7.4.0",
-    "mongoose": "^5.6.6"
+    "mongoose": "^5.7.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
